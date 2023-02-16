@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>User Info Page</title>
+    <h2>User information-page</h2>
+</head>
+<body>
+<style>
+    th {
+        text-align: left;
+        color: #000000;
+        background-color: 	#FFFFFF;
+        border-top: 1px solid #c0c0c0;
+    }
+
+
+    td {
+        min-width: 230px;
+
+        border-top: 1px solid #c0c0c0;
+    }
+
+    th, td {
+        padding: 12px;
+        height: 20px;
+    }
+
+    td:first-child {
+        width: 150px;
+        min-width: 0;
+    }
+
+    th:last-child {
+        text-align: left;
+    }
+
+    td:last-child {
+        width: 80px;
+        min-width: 0;
+        text-align: left;
+    }
+
+    tr {
+        background: #F8F8FF;
+    }
+</style>
+<blockquote>
+
+    About user
+
+    <table>
+    <tr>
+        <th>Id</th>
+        <th>First Name</th>
+        <th>Last name</th>
+        <th>Email</th>
+        <th>Role</th>
+    </tr>
+
+    <td th:text="${user.getId()}"></td>
+    <td th:text="${user.getUsername()}"></td>
+    <td th:text="${user.getSurname()}"></td>
+    <td th:text="${user.getEmail()}"></td>
+    <td th:text="${user.getRoles()}"></td>
+
+</table>
+    </br>
+    <form action="/logout">
+        <button type="submit">Logout</button>
+    </form>
+
+</blockquote>
+</body>
+</html>
+
