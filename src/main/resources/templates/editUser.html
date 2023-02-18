@@ -7,20 +7,25 @@
 </head>
 <body>
 <form th:method="PATCH" th:action="@{/admin/editUser/{id}(id=${user.getId()})}" th:object="${user}">
+
   <label for="username">Enter username:</label>
   <input type="text" th:field="*{name}" id="username">
   <br/>
+
   <label for="lastname">Enter lastname:</label>
   <input type="text" th:field="*{surname}" id="lastname">
   <br/>
+
   <label for="email">Enter email:</label>
   <input type="text" th:field="*{email}" id="email">
   <br/>
+
   <label for="password">Enter password:</label>
   <input type="password" th:field="*{password}" id="password">
   <br/>
-  <label for="role_select">Roles</label>
-  <select multiple class="form-control" th:field="*{roles}" id="role_select">
+
+  <label for="role">Roles</label>
+  <select multiple size="2" th:field="*{roles}" id="role">
     <option th:each="role : ${listRoles}"
             th:value="${role.getName()}"
             th:text="${role.getName()}"></option>

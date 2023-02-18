@@ -26,6 +26,7 @@ public class UserController {
         this.userService = userService;
         this.passwordEncoder = passwordEncoder;
     }
+
     @GetMapping
     public String getUser(Model model, Principal principal) {
         model.addAttribute("user", userService.getUserByName(principal.getName()));

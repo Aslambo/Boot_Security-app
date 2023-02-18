@@ -1,7 +1,6 @@
 package ru.kata.spring.boot_security.demo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -49,7 +48,6 @@ public class UserServiceImp implements UserService {
     @Override
     @Transactional
     public void updateUser(User updateUser) {
-        updateUser.setPassword(getUser(updateUser.getId()).getPassword());
         userDao.updateUser(updateUser);
     }
 
@@ -63,15 +61,14 @@ public class UserServiceImp implements UserService {
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = getUserByName(username);
-        if(user == null) {
+        if (user == null) {
             throw new UsernameNotFoundException(String.format("User '%x' not found", username));
         }
-        user.getRoles().size();
 
-        System.out.println(user.getUsername() + " " + user.getRoles());
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
                 mapRolesToAuthorities(user.getRoles()));
     }
+
     private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
         return roles.stream().map(r -> new SimpleGrantedAuthority(r.getName())).collect(Collectors.toList());
     }

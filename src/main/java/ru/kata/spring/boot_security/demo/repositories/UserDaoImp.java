@@ -1,21 +1,16 @@
 package ru.kata.spring.boot_security.demo.repositories;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;;
 import org.springframework.stereotype.Repository;
 import ru.kata.spring.boot_security.demo.model.User;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
 import java.util.List;
+
 @Repository
-public class UserDaoImp implements UserDao{
+public class UserDaoImp implements UserDao {
     @PersistenceContext
     private EntityManager em;
-
-    @Autowired
-    public UserDaoImp(EntityManager em) {
-        this.em = em;
-    }
 
     @Override
     public User getUserByName(String username) {
